@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crop Recommendation • AgriSense</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+  <div class="wrap">
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <div>
+          <h1 id="title">Smart Crop Recommendation</h1>
+          <p>Analyze soil nutrients, climate, and rainfall to discover the best crop for your field — fast, accurate, and farmer-friendly.</p>
+        </div>
+        <div class="bubbles" aria-hidden="true">
+          <div class="bubble dark">
+            <div><strong>Weather synced.</strong> Local conditions auto‑factored into predictions.</div>
+          </div>
+          <div class="bubble">
+            <div><strong>Soil profile ready.</strong> NPK and pH mapped for better outcomes. </div>
+          </div>
+          <div class="bubble dark">
+            <div><strong>Zero guesswork.</strong> Get yield, price, and revenue instantly.</div>
+          </div>
+        </div>
+      </section>
+      <section class="panel" aria-label="Crop recommendation form and results">
+        <div class="card">
+          <h2>Enter your field data</h2>
+          <p class="sub">We keep the prediction logic identical—just a fresher look.</p>
+          <form id="cropForm" novalidate>
+            <div class="grid">
+              <div class="field">
+                <label for="nitrogen">Nitrogen (0–1000)</label>
+                <input type="number" id="nitrogen" name="nitrogen" min="0" max="1000" step="0.1" value="40" required />
+              </div>
+              <div class="field">
+                <label for="phosphorus">Phosphorus (0–1000)</label>
+                <input type="number" id="phosphorus" name="phosphorus" min="0" max="1000" step="0.1" value="50" required />
+              </div>
+              <div class="field">
+                <label for="potassium">Potassium (0–1000)</label>
+                <input type="number" id="potassium" name="potassium" min="0" max="1000" step="0.1" value="60" required />
+              </div>
+              <div class="field">
+                <label for="temperature">Temperature (–50 to 60 °C)</label>
+                <input type="number" id="temperature" name="temperature" min="-50" max="60" step="0.1" value="33" required />
+              </div>
+              <div class="field">
+                <label for="humidity">Humidity (0–100%)</label>
+                <input type="number" id="humidity" name="humidity" min="0" max="100" step="0.1" value="60" required />
+              </div>
+              <div class="field">
+                <label for="ph_value">pH Value (0–14)</label>
+                <input type="number" id="ph_value" name="ph_value" min="0" max="14" step="0.1" value="7" required />
+              </div>
+              <div class="field">
+                <label for="rainfall">Rainfall (0–500 mm)</label>
+                <input type="number" id="rainfall" name="rainfall" min="0" max="500" step="0.1" value="200" required />
+              </div>
+            </div>
+            <div class="actions">
+              <button type="submit" id="submitBtn">Get Recommendation</button>
+              <span class="loading" id="loading" style="display: none;">Analyzing your data… Please wait.</span>
+            </div>
+            <div class="error" id="error" role="alert"></div>
+            <div class="results" id="results" aria-live="polite">
+              <h3>Prediction Results</h3>
+              <div class="stats">
+                <div class="stat">
+                  <span class="label">Recommended Crop</span>
+                  <span class="value" id="crop"></span>
+                </div>
+                <div class="stat">
+                  <span class="label">Expected Yield</span>
+                  <span class="value" id="yield"></span>
+                </div>
+                <div class="stat">
+                  <span class="label">Expected Price</span>
+                  <span class="value" id="price"></span>
+                </div>
+                <div class="stat">
+                  <span class="label">Expected Revenue</span>
+                  <span class="value" id="revenue"></span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <span class="powered">
+        <span class="leaf" aria-hidden="true"></span>
+        Powered by AgriSense
+      </span>
+    </footer>
+  </div>
+</body>
+</html>
